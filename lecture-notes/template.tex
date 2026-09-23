@@ -1,0 +1,222 @@
+% template.tex --- starting point for a set of lecture notes in
+% lecturenotes.cls. Every element of the format appears once, filled with
+% placeholder text: keep the skeleton, replace the content. The rules behind
+% each element are in docs/formatting-guide.md.
+%
+% Build: pdflatex template.tex (run twice).
+\documentclass{lecturenotes}
+
+\title{Title of the Note}
+\subtitle{The one question this note answers?}
+\author{Author Name}
+\series{Series name --- lecture notes}
+% \runningtitle{Short title}  % left-hand header, if the title is long
+% \date{...}                  % defaults to the current month and year
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+% ===========================================================================
+% Front matter: one-line description, three lead paragraphs, reading map.
+% ===========================================================================
+One sentence stating the subject and that it is developed from first
+principles.
+
+\paragraph{Prerequisites.} The mathematics the reader is assumed to have,
+listed concretely. \textbf{Nothing beyond that is assumed.} Name any
+advanced machinery the notes develop for themselves rather than assume.
+
+\paragraph{What you should be able to do afterwards.} Three or four concrete
+capabilities, phrased as verbs: derive this result rather than recall it,
+state exactly what that theorem does and does not assert, apply the method to
+the case study.
+
+\paragraph{Companion notes.} How this note relates to its siblings in the
+series, and which sections carry the connections (for example
+\cref{sec:second-sub}).
+
+\separator
+
+\subsubsection*{Reading map}
+
+\paragraph{Part 0 --- Vocabulary.} \Cref{sec:everything} fixes notation and
+states every result used but not derived. Skip it and refer back as needed.
+
+\paragraph{Part I --- Foundations.} \Cref{sec:first} sets up the object of
+study; \cref{sec:second} derives the main result.
+
+\paragraph{Part II --- Practice.} \Cref{sec:case} is the worked case;
+\cref{sec:limits} states the limits. \Cref{app:checks} records the
+numerical checks.
+
+% ===========================================================================
+\part{Notation and vocabulary}
+% ===========================================================================
+
+\section{Everything used but not derived}\label{sec:everything}
+
+These notes are self-contained. \Cref{sec:notation} fixes notation;
+\cref{sec:results} states the results used, with a proof where one is short
+and an explicit statement of trust where it is not. Nothing later uses a
+symbol, result or term that does not appear here or at its point of first
+use.
+
+\subsection{Notation}\label{sec:notation}
+
+\begin{tabularx}{\linewidth}{@{}l L@{}}
+\toprule
+Symbol & Meaning \\
+\midrule
+$x$, $y$ & placeholder: the primary variables \\ \rowrule
+$\theta$ & placeholder: the parameter being estimated \\ \rowrule
+$f(x;\theta)$ & placeholder: the model, with a cross-reference to where it is defined (\cref{def:first}) \\ \rowrule
+$\mathbb E$, $\mathrm{Var}$ & expectation, variance \\ \rowrule
+$\log$ & natural logarithm throughout \\ \rowrule
+$\blacksquare$ & end of proof \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Mathematical results used}\label{sec:results}
+
+\begin{definition}[name of the concept]\label{def:first}
+Placeholder definition. The term being defined is set in
+\textbf{bold} at its point of definition; the rest of the statement is
+upright text with inline mathematics such as $f(x;\theta)$.
+\end{definition}
+
+\begin{lemma}[name of the lemma]\label{lem:first}
+Placeholder statement of a short auxiliary result, e.g.\ if $a \le b$ then
+$\varphi(a) \le \varphi(b)$ for every non-decreasing $\varphi$.
+\end{lemma}
+
+\begin{proof}
+Placeholder proof, ending with the filled square the class supplies
+automatically.
+\end{proof}
+
+\begin{fact}[name of the fact]\label{fact:first}
+Placeholder statement of a standard result used without proof. Say where a
+proof can be found~\cite{ref-book}; a Fact is the only statement kind
+permitted to appear without one.
+\end{fact}
+
+% ===========================================================================
+\part{Foundations}
+% ===========================================================================
+
+\section{First topic}\label{sec:first}
+
+Placeholder paragraph motivating the section: what problem it solves and why
+the obvious approach fails. Display equations pad their top-level relations
+with thick spaces:
+\[
+  y \;=\; f(x;\theta) \;+\; \varepsilon,
+  \qquad \mathbb E[\varepsilon] \;=\; 0.
+\]
+
+\begin{proposition}[name of the proposition]\label{prop:first}
+Placeholder statement of an intermediate result.
+\end{proposition}
+
+\begin{proof}
+Placeholder proof, citing \cref{lem:first} and \cref{fact:first} by name
+rather than by bare number.
+\end{proof}
+
+\begin{summary}
+Placeholder plain-language restatement: two or three sentences saying what
+the derivation above established, without symbols where possible.
+\end{summary}
+
+\section{Second topic}\label{sec:second}
+
+\subsection{First subsection}
+
+\begin{theorem}[name of the main result, Author~\cite{ref-article}]\label{thm:main}
+Placeholder statement of the main theorem. An equation that is referred to
+later is numbered and labelled:
+\begin{equation}\label{eq:main}
+  F(\theta) \;=\; \mathbb E\big[\thinspace\ell(y, f(x;\theta))\thinspace\big].
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Placeholder proof. Show every intermediate step; cite \cref{eq:main} by
+reference.
+\end{proof}
+
+\subsection{Second subsection}\label{sec:second-sub}
+
+Placeholder derivation leading to the section's final result, which is framed:
+\[
+  \keyresult{\theta^\ast \;=\; \arg\min_\theta F(\theta).}
+\]
+
+\begin{corollary}[name of the corollary]\label{cor:first}
+Placeholder consequence that follows from \cref{thm:main} in a line or two.
+\end{corollary}
+
+\begin{figure}
+\centering
+\fbox{\parbox[c][5.5cm][c]{0.96\linewidth}{\centering\color{black!45}
+  \texttt{\textbackslash includegraphics\{figures/name.png\}}}}
+\caption{Placeholder caption, which is the figure's interpretation. Its first
+sentence names the subject or states the finding; then say what the axes
+are, what each panel shows (\textbf{(a)}, \textbf{(b)}), and what pattern to
+look for. \textbf{The takeaway:} the single conclusion the reader should draw.
+\figcredit{scripts/plot_name.py}}
+\label{fig:first}
+\end{figure}
+
+The results combine into a procedure (\cref{fig:first} illustrates it).
+
+\begin{algorithm}[name of the procedure]\label{alg:first}
+\begin{enumerate}
+  \item Placeholder first step.
+  \item Placeholder second step, citing the result it relies on
+        (\cref{thm:main}).
+  \item Placeholder final step.
+\end{enumerate}
+\end{algorithm}
+
+% ===========================================================================
+\part{Practice}
+% ===========================================================================
+
+\section{Case study}\label{sec:case}
+
+Placeholder worked case: the method applied to a concrete instance, with the
+measured numbers and what they mean. \textbf{State the lesson once, in bold,
+and generally.}
+
+\section{Assumptions and where they fail}\label{sec:limits}
+
+Placeholder list of the assumptions the derivation made, and for each the
+circumstances in which it breaks and what then goes wrong.
+
+% ===========================================================================
+\appendix
+\section{Numerical verification}\label{app:checks}
+
+Every analytic claim above was checked numerically; seeds are fixed so the
+checks reproduce.
+
+\begin{verification}
+Placeholder claim & \ref{sec:second} & how it was checked & measured agreement \\ \rowrule
+Placeholder claim & \ref{sec:second-sub} & how it was checked & measured agreement \\
+\end{verification}
+
+% ===========================================================================
+\begin{thebibliography}{9}
+
+\bibitem{ref-article} Surname, A. (Year). \textit{Title of the article.}
+Journal, Volume(Issue), pages. \href{https://doi.org/}{Link}
+
+\bibitem{ref-book} Surname, A., \& Surname, B. (Year). \textit{Title of the
+Book}, edition, chapter. Publisher. \href{https://doi.org/}{Link}
+
+\end{thebibliography}
+
+\end{document}
