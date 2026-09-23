@@ -10,9 +10,18 @@
 *.synctex.gz
 *.bbl
 *.blg
+temp_build.*
+
+# Verification scratch files (see cv/docs/verification.md)
+stext.xml
+trace.xml
+before.txt
+after.txt
 
 # Environment and OS
 .env
 .DS_Store
 venv/
 .venv/
+.idea/
+*.swp

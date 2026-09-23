@@ -1,0 +1,28 @@
+% ARCHETYPE: entry with header, subheader, and bullets.
+% Two header lines -- bold title with right-aligned place, italic role with
+% right-aligned dates -- then \cvlistgap, then the bullet list. The gap
+% belongs after the header BLOCK, not after the first header line.
+\newcommand{\sectionExperience}{
+\section*{EXPERIENCE}
+\textbf{Position or Project Title} \hfill City, Country\\
+\textit{Role or Title} \hfill January 2024 -- December 2024
+\cvlistgap
+\begin{itemize}
+    \item State what you did, the method or tool you used, and the outcome it produced. One sentence of roughly this length keeps the entry to a predictable height, which is what makes the rhythm visible.
+\end{itemize}
+\cventrygap
+\textbf{Position or Project Title} \hfill City, Country\\
+\textit{Role or Title} \hfill May 2023 -- December 2023
+\cvlistgap
+\begin{itemize}
+    \item A second entry, so the entry-to-entry gap has something to separate. Note that nothing between these two entries creates space except \texttt{\textbackslash cventrygap}.
+\end{itemize}
+\cventrygap
+\textbf{A Title Long Enough To Wrap Onto\\
+    A Second Line} \hfill City, Country\\
+\textit{Role or Title} \hfill May 2022 -- April 2023
+\cvlistgap
+\begin{itemize}
+    \item A header may itself span two lines; the indented continuation above shows the convention. The list gap still measures from the end of the whole header block.
+\end{itemize}
+}

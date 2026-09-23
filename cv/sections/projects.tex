@@ -1,0 +1,17 @@
+% ARCHETYPE: entry with header and bullets (no subheader).
+% A one-line header, then \cvlistgap, then bullets. Same pattern as
+% experience.tex with the italic subheader line removed.
+\newcommand{\sectionProjects}{
+\section*{SELECTED PROJECTS}
+\textbf{project\_name} (\url{https://github.com/your-username/project_name})
+\cvlistgap
+\begin{itemize}
+    \item Describe what the project does, the architecture or technique behind it, and what makes it non-trivial. Underscores in a project name need escaping as \texttt{\textbackslash\_} outside \texttt{\textbackslash url\{\}}.
+\end{itemize}
+\cventrygap
+\textbf{another\_project} [Private Repository] (work in progress)
+\cvlistgap
+\begin{itemize}
+    \item A bracketed annotation after the name is the place for status -- private, archived, in progress -- so the reader is not left clicking a dead link.
+\end{itemize}
+}

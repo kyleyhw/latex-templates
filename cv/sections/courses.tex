@@ -1,0 +1,19 @@
+% ARCHETYPE: two-column list.
+% Uses the cvcolumns environment from template.tex, NOT multicols directly --
+% cvcolumns corrects the \topskip that otherwise drops the columns below
+% the rhythm and knocks them out of alignment with each other.
+\newcommand{\sectionCourses}{%
+\section*{SELECTED COURSES}%
+\begin{cvcolumns}{2}
+\begin{itemize}
+    \item A Course Title That Wraps \\(Institution, 2024)
+    \item Course Title (Institution, 2024)
+    \item Course Title (Institution, 2024)
+    \item Course Title (Institution, 2023)
+    \item Course Title (Institution, 2023)
+    \item Course Title (Institution, 2023)
+    \item Course Title (Institution, 2023)
+    \item Course Title (Institution, 2022)
+\end{itemize}
+\end{cvcolumns}
+}

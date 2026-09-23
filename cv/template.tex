@@ -1,0 +1,134 @@
+% =====================================================================
+% CV template -- LaTeX shell
+%
+% Layout machinery only. All content lives in sections/*.tex; the order
+% in which sections appear is set in sections/section_order.tex.
+%
+% Before editing the vertical spacing, read docs/vertical-rhythm.md. The
+% gaps below are a deliberate, ordered system, not arbitrary constants.
+% =====================================================================
+
+% extarticle rather than article: it accepts 8/9/10/11/12/14/17/20pt, so the
+% body size stays a free parameter if you need to fit one more entry.
+\documentclass[letterpaper,10pt]{extarticle}
+
+% --- Packages --------------------------------------------------------
+\usepackage[utf8]{inputenc}     % input encoding
+\usepackage[T1]{fontenc}        % 8-bit font encoding: correct hyphenation
+                                % of accented words, copy-pasteable output
+\usepackage{lmodern}            % Latin Modern: vector fonts, sharp at any zoom
+\usepackage{geometry}           % page margins
+% Keep this paper size in agreement with the class option above; \geometry is
+% what actually takes effect. For A4, change both to a4paper.
+\geometry{letterpaper, margin=0.75in}
+\usepackage{titlesec}           % section heading format and spacing
+\usepackage{enumitem}           % list spacing control (\setlist)
+\usepackage{xcolor}
+\usepackage{hyperref}           % hyperlinks
+\usepackage{fancyhdr}           % running header
+\usepackage{datetime}           % \monthyeardate
+\usepackage{multicol}           % two-column sections
+
+% Link colour. A dark blue reads as a link on screen but stays legible
+% when the CV is printed in greyscale; pure blue (0,0,1) prints too light.
+\definecolor{linkblue}{rgb}{0.0, 0.0, 0.75}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkblue,
+    filecolor=linkblue,
+    urlcolor=linkblue,
+    citecolor=linkblue,
+}
+
+% --- Vertical rhythm -------------------------------------------------
+% Every vertical gap in this document is declared here and is rigid, so
+% spacing never varies with list membership or with how full a page is.
+% Six levels, closest first (\baselineskip is 11.955pt at 10pt):
+%
+%   line    -> line          1.00 line   leading, not adjustable
+%   bullet  -> bullet        1.00 line   \setlist{nosep}: lists add nothing
+%   header  -> its bullets   1.25 lines  \cvlistgap
+%   heading -> its content   ~1.35 lines \cvHeadGap
+%   entry   -> entry         1.67 lines  \cventrygap
+%   section -> section       2.17 lines  \cvSectionGap, via \titlespacing
+%
+% Two failure modes. The levels must not INVERT: whatever sits inside an
+% entry has to be closer than the gap separating two entries, which has to
+% be closer than the gap separating two sections. And they must not
+% COLLAPSE: putting several levels all at 1.0 line is perfectly consistent
+% and reads as cramped, because nothing inside a section is articulated.
+%
+% Do NOT add a bare \vspace, a trailing \\, or blank lines to a section
+% file to create space. Use \cventrygap and \cvlistgap, so every gap in
+% the document stays accountable to the four lengths below.
+
+\setlist{nosep}                 % lists contribute no vertical space of their own
+\setlength{\multicolsep}{0pt}   % nor does multicols
+
+\newlength{\cvEntryGap}   \setlength{\cvEntryGap}{8pt}    % entry   -> entry
+\newlength{\cvSectionGap} \setlength{\cvSectionGap}{12pt} % before a section heading
+\newlength{\cvHeadGap}    \setlength{\cvHeadGap}{9pt}     % heading rule -> first content
+\newlength{\cvListGap}    \setlength{\cvListGap}{3pt}     % entry header -> its bullets
+
+\newcommand{\cventrygap}{\par\vspace{\cvEntryGap}}
+\newcommand{\cvlistgap}{\par\vspace{\cvListGap}}
+
+% multicol seats each column's first baseline on \topskip (10pt by
+% default), which overrides the rhythm and drops the columns ~3pt low.
+% Setting \topskip to 0pt fixes that but then lets each column's first
+% baseline follow its own first line's height, knocking the columns out
+% of alignment with each other. A strut is at least as tall as any normal
+% line, so \ht\strutbox forces both columns onto a common baseline.
+% Scoped with \begingroup so the change does not leak past the columns.
+\newenvironment{cvcolumns}[1]%
+  {\begingroup\setlength{\topskip}{\ht\strutbox}\begin{multicols}{#1}}%
+  {\end{multicols}\endgroup}
+
+% --- Section headings ------------------------------------------------
+\titleformat{\section}{\large\bfseries}{\thesection}{1em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{\cvSectionGap}{\cvHeadGap}
+
+\setlength{\parindent}{0pt}     % no paragraph indentation anywhere
+
+\newdateformat{monthyeardate}{\monthname[\THEMONTH] \THEYEAR}
+
+% --- Section definitions ---------------------------------------------
+% Each file defines one \sectionX macro but renders nothing on its own.
+% See sections/section_order.tex for what is actually invoked, and
+% docs/sections.md for the convention.
+\input{sections/education.tex}
+\input{sections/experience.tex}
+\input{sections/projects.tex}
+\input{sections/honours.tex}
+\input{sections/skills.tex}
+\input{sections/courses.tex}
+\input{sections/additional_experience.tex}
+\input{sections/interests.tex}
+
+% =====================================================================
+\begin{document}
+
+% Running header: appears on page 2 onward, suppressed on page 1 by the
+% \thispagestyle{empty} below (page 1 already carries the name block).
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead{}
+\fancyhead[L]{\textit{Your Name}}
+\fancyhead[R]{\textit{\monthyeardate\today}}
+\thispagestyle{empty}
+
+% --- Header block ----------------------------------------------------
+\begin{flushleft}
+\textbf{\LARGE Your Name}\\[\cvEntryGap] % entry-level gap: the name is its own block
+One line of positioning: current role, field, or status
+\\ Email: \url{you@example.com}
+\\ GitHub: \url{https://github.com/your-username}
+\\ Website: \url{https://www.example.com}
+
+\input{sections/header_summary.tex}
+\end{flushleft}
+
+% --- Section ordering ------------------------------------------------
+\input{sections/section_order.tex}
+
+\end{document}
